@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./admin";
+
+package platform;
+
+service AdminService {
+  rpc ProjectList (ProjectListRequest) returns (ProjectListResponse) {}
+}
+
+message Project {
+  int64 id = 1;
+  string name = 2;
+}
+
+message ProjectListRequest {
+}
+
+message ProjectListResponse {
+  repeated Project projects = 1;
+}
+
