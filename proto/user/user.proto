@@ -7,26 +7,46 @@ package platform;
 service UserService {
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Logout (LogoutRequest) returns (LogoutResponse) {}
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
 }
 
 message User {
   int64 id = 1;
   string name = 2;
+  string username = 3;
+  string password = 4;
+}
+
+message Cookie {
+  string name = 1;
+  string value = 2;
+  int64 maxAge = 3;
+}
+
+message GetUserRequest {
+  string uuid = 1;
+  string session = 2;
+}
+
+message GetUserResponse {
+  User user = 1;
 }
 
 message LoginRequest {
-  string username = 1;
-  string password = 2;
+  string uuid = 1;
+  User user = 2;
   bool remember = 3;
 }
 
 message LoginResponse {
   User user = 1;
+  repeated Cookie cookie = 2;
 }
 
 message LogoutRequest {
-  bool total = 1;
-  User user = 2;
+  string uuid = 1;
+  bool total = 2;
+  User user = 3;
 }
 
 message LogoutResponse {
