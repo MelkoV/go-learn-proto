@@ -23,6 +23,11 @@ message Cookie {
   int64 maxAge = 3;
 }
 
+message Error {
+  string attribute = 1;
+  string message = 2;
+}
+
 message GetUserRequest {
   string uuid = 1;
   string session = 2;
@@ -41,6 +46,7 @@ message LoginRequest {
 message LoginResponse {
   User user = 1;
   repeated Cookie cookie = 2;
+  repeated Error error = 3;
 }
 
 message LogoutRequest {
